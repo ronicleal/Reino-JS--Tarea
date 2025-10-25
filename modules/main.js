@@ -35,8 +35,6 @@ function escena1() {
         <button id="continuar">Continuar al mercado</button>
         `;
 
-
-
         scene.querySelector("#continuar").addEventListener("click", () => {
             showScene("market");
             escena2();
@@ -57,11 +55,74 @@ function escena2() {
         const descuento = Math.floor(Math.random() * 31);//0 a 30%
         aplicarDescuentoPorRareza(r, descuento);
 
-    })
+    });
+
+    //Mostrar productos
+    mercado.forEach((producto, index) => {
+        const div = document.createElement("div");
+        div.textContent = producto.mostrarProducto();
+        div.style.border = '1px solid black';
+        div.style.margin = '5px';
+        div.style.padding = '5px';
+        div.style.cursor = 'pointer';
+
+        // Evento para seleccionar/deseleccionar productos
+        div.addEventListener('click', () => {
+            if (seleccionados.includes(producto)) {
+                seleccionados = seleccionados.filter(p => p !== producto);
+                div.style.backgroundColor = '';
+            } else {
+                seleccionados.push(producto);
+                div.style.backgroundColor = 'lightgreen';
+            }
+        });
+
+        container.appendChild(div)
+
+    });
+
+    // Botón de compra
+    const botonComprar = document.createElement('button');
+    botonComprar.textContent = '🛒Confirmar compra';
+    botonComprar.style.marginTop = '10px';
+
+
+    // Contenedor donde mostraremos el estado del jugador
+    const estadoJugadorDiv = document.createElement('div');
+    estadoJugadorDiv.id = 'estado-jugador';
+    estadoJugadorDiv.style.marginTop = '15px';
+    estadoJugadorDiv.style.whiteSpace = 'pre-line';
+
+    botonComprar.addEventListener('click', () => {
+        if (seleccionados.length === 0) {
+            alert('No has seleccionado ningún producto.');
+            return;
+        }
+
+        // Añadir los ítems al jugador
+        seleccionados.forEach(item => jugador.añadirItem(item));
+        seleccionados = [];
+
+        // Mostrar estado actualizado del jugador
+        estadoJugadorDiv.innerHTML = `
+      <h3>🎮 Estado actual del jugador</h3>
+      <pre>${jugador.mostrarJugador()}</pre>
+      <button id="continuar-batalla">➡️ Continuar a la batalla</button>
+    `;
+
+        // Evento para continuar a la escena 3
+        estadoJugadorDiv.querySelector('#continuar-batalla').addEventListener('click', () => {
+            showScene('enemies');
+            escena3();
+        });
+    });
+
+    container.appendChild(botonComprar);
+    container.appendChild(estadoJugadorDiv);
 
 
 
-    container.appendChild()
+
 }
 
 
