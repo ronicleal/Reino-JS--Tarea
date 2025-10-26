@@ -82,50 +82,44 @@ function escena2() {
     });
 
     // Botón de compra
-    const botonComprar = document.createElement('button');
-    botonComprar.textContent = '🛒Confirmar compra';
-    botonComprar.style.marginTop = '10px';
+    const botonComprar = document.createElement("button");
+    botonComprar.textContent = "🛒 Confirmar compra";
+    botonComprar.style.marginTop = "10px";
 
-
-    // Contenedor donde mostraremos el estado del jugador
-    const estadoJugadorDiv = document.createElement('div');
-    estadoJugadorDiv.id = 'estado-jugador';
-    estadoJugadorDiv.style.marginTop = '15px';
-    estadoJugadorDiv.style.whiteSpace = 'pre-line';
-
-    botonComprar.addEventListener('click', () => {
+    botonComprar.addEventListener("click", () => {
         if (seleccionados.length === 0) {
-            alert('No has seleccionado ningún producto.');
+            alert("No has seleccionado ningún producto.");
             return;
         }
 
-        // Añadir los ítems al jugador
+        // Añadir ítems al jugador
         seleccionados.forEach(item => jugador.añadirItem(item));
         seleccionados = [];
 
-        // Mostrar estado actualizado del jugador
-        estadoJugadorDiv.innerHTML = `
-      <h3>🎮 Estado actual del jugador</h3>
-      <pre>${jugador.mostrarJugador()}</pre>
-      <button id="continuar-batalla">➡️ Continuar a la batalla</button>
-    `;
-
-        // Evento para continuar a la escena 3
-        estadoJugadorDiv.querySelector('#continuar-batalla').addEventListener('click', () => {
-            showScene('enemies');
-            escena3();
-        });
+        // Pasar a la siguiente escena
+        showScene("enemies");
+        escena3();
     });
 
     container.appendChild(botonComprar);
-    container.appendChild(estadoJugadorDiv);
-
-
-
-
 }
 
 
+
+
+function escena3() {
+    const container = document.getElementById("enemies-container");
+    container.innerHTML = `
+        <h2>🎮 Estado actual del jugador</h2>
+        <pre>${jugador.mostrarJugador()}</pre>
+        <button id="continuar-batalla">➡️ Continuar a la batalla</button>
+    `;
+
+    container.querySelector("#continuar-batalla").addEventListener("click", () => {
+        alert("¡Prepárate para la batalla!");
+        // Aquí luego conectarás con la escena 4 (enemigos y combate)
+    });
+}
 
 
 
