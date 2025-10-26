@@ -105,8 +105,7 @@ function escena2() {
 }
 
 
-
-
+/*ESCENA 3: ESTADO ACTUAL DEL JUGADOR CON SUS PRODUCTOS COMPRADOS*/
 function escena3() {
     const container = document.getElementById("enemies-container");
     container.innerHTML = `
@@ -117,8 +116,41 @@ function escena3() {
 
     container.querySelector("#continuar-batalla").addEventListener("click", () => {
         alert("¡Prepárate para la batalla!");
-        // Aquí luego conectarás con la escena 4 (enemigos y combate)
+        escena4();
+        
     });
+}
+
+
+/*ESCENA 4: ENEMIGOS Y ESTADISTICAS*/
+function escena4(){
+    const container = document.getElementById('enemies-container');
+    container.innerHTML= `<h2>⚔️Enemigos</h2>`;
+
+    //Crear enemigos
+    enemigos = [
+    new Enemigo('Goblin', 10, 30),
+    new Enemigo('Orco', 15, 50),
+    new JefeFinal('Dragón rojo', 25, 120, 'Llama infernal', 1.5),
+  ];
+
+  enemigos.forEach(e =>{
+    const div = document.createElement('div');
+    div.textContent = e.mostrarEnemigo();
+    div.style.border = '1px solid black';
+    div.style.margin = '5px';
+    div.style.padding = '5px';
+    container.appendChild(div); 
+  });
+
+  const botonContinuar = document.createElement('button');
+  botonContinuar.textContent = 'Comenzar batallas';
+  botonContinuar.addEventListener('click', () => {
+    showScene('battle');
+    escena5();
+  });
+
+  container.appendChild(botonContinuar);
 }
 
 
