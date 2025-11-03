@@ -1,0 +1,27 @@
+{
+  "name": "reino-js--tarea",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs": "jsdoc -c jsdoc.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronicleal/Reino-JS--Tarea.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ronicleal/Reino-JS--Tarea/issues"
+  },
+  "homepage": "https://github.com/ronicleal/Reino-JS--Tarea#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.5"
+  }
+}
