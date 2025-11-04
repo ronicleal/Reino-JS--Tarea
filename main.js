@@ -1,9 +1,9 @@
 /*Importacion de clases*/
-import { Jugador } from "./jugadores.js";
-import { Enemigo, JefeFinal } from "./enemigos.js";
-import { mercado, aplicarDescuentoPorRareza } from "./mercado.js";
-import { batalla, agruparPorNivel } from "./ranking.js";
-import { showScene } from "../utils/utils.js";
+import { Jugador } from "./modules/jugadores.js";
+import { Enemigo, JefeFinal } from "./modules/enemigos.js";
+import { mercado, aplicarDescuentoPorRareza } from "./modules/mercado.js";
+import { batalla, agruparPorNivel } from "./modules/ranking.js";
+import { showScene } from "./utils/utils.js";
 
 /*Variables globales*/
 let jugador;
